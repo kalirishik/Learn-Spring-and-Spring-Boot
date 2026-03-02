@@ -1,0 +1,66 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Make body full screen and center content */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+
+    /* Perfect Center */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;   /* Horizontal center */
+    align-items: center;       /* Vertical center */
+}
+
+/* Remove container alignment issues */
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Card Styling */
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    width: 600px;
+    max-width: 90%;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 14px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Button Colors */
+.primary {
+    background: linear-gradient(90deg, #36d1dc, #5b86e5);
+}
+
+.success {
+    background: linear-gradient(90deg, #11998e, #38ef7d);
+}
+
+.info {
+    background: linear-gradient(90deg, #ff758c, #ff7eb3);
+}

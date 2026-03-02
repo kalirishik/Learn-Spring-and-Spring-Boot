@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Courses</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="myscript.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>📚 Available Courses</h2>
+
+        <table border="0">
+            <thead>
+                <tr>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                    <th>Trainer</th>
+                    <th>Duration (Weeks)</th>
+                </tr>
+            </thead>
+
+            <tbody id="tableData">
+            </tbody>
+        </table>
+
+        <a href="index.html">
+            <button>🏠 Home Page</button>
+        </a>
+    </div>
+
+    <script>
+        window.onload = function () {
+            showAvailableCourses();
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+<!--    &#45;&#45; byName - name ref  &#45;&#45; byName - ref type-->
+<!--    <bean id="st1" class="org.example.Student" autowire="byType">-->
+<!--        <property name="age" value="22"></property>-->
+<!--        <property name="rollno" value="12"></property>-->
+<!--        <property name="writer" ref="writer"></property>-->
+<!--    </bean>-->
+
+<!--    <bean id="st2" class="org.example.Student">-->
+<!--    </bean>-->
+
+<!--    <bean id="t1" class="org.example.Teacher">-->
+<!--    </bean>-->
+
+    <bean id="st1" class="org.example.Student" autowire="constructor">
+        <constructor-arg index="0" value="22"></constructor-arg>
+        <constructor-arg index="1" value="12"></constructor-arg>
+<!--        <constructor-arg index="2" ref="p1"></constructor-arg>-->
+    </bean>
+
+    <bean id ="p1" class="org.example.Pen">
+    </bean>
+
+    <bean id ="p2" class="org.example.Pencil" primary="true">
+    </bean>
+
+    <bean id="writer" class="org.example.Sketch">
+    </bean>
+</beans>
