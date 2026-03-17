@@ -19,15 +19,15 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import java.util.*;
 
-@Configuration
-@EnableWebSecurity
+//@Configuration
+//@EnableWebSecurity
 public class SecurityConfig {
 
     @Autowired
     UserDetailsService userDetailsService;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        http.csrf(customizer -> customizer.disable()); // disable csrf and form
 //        http.authorizeHttpRequests(request->request.anyRequest().authenticated());
 ////        http.formLogin(Customizer.withDefaults()); // login form and login form with authenticate and authorization - browser
@@ -43,29 +43,29 @@ public class SecurityConfig {
 //                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 //                .build();
 
-        return http.csrf(customizer -> customizer.disable())
-                .authorizeHttpRequests(request->
-                        request.requestMatchers("/admin/**").hasRole("ADMIN")
-                                .requestMatchers("/user/**").hasAnyRole("ADMIN","USER")
-                                .requestMatchers("/Student/**").hasAnyRole("ADMIN","STUDENT")
-                                .requestMatchers("/**").permitAll()
-                        .anyRequest().authenticated())
-                .httpBasic(Customizer.withDefaults())
-                .sessionManagement(session->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .build();
-    }
+//        return http.csrf(customizer -> customizer.disable())
+//                .authorizeHttpRequests(request->
+//                        request.requestMatchers("/admin/**").hasRole("ADMIN")
+//                                .requestMatchers("/user/**").hasAnyRole("ADMIN","USER")
+//                                .requestMatchers("/student/**").hasAnyRole("ADMIN","STUDENT")
+//                                .requestMatchers("/**").permitAll()
+//                        .anyRequest().authenticated())
+//                .httpBasic(Customizer.withDefaults())
+//                .sessionManagement(session->
+//                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .build();
+//    }
 
     // automatic users for login
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider(userDetailsService);
-//        daoAuthenticationProvider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());// no password encode
-        daoAuthenticationProvider.setPasswordEncoder(new BCryptPasswordEncoder(4));
-        return daoAuthenticationProvider;
-    }
+//    @Bean
+//    public AuthenticationProvider authenticationProvider() {
+//        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider(userDetailsService);
+////        daoAuthenticationProvider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());// no password encode
+//        daoAuthenticationProvider.setPasswordEncoder(new BCryptPasswordEncoder(4));
+//        return daoAuthenticationProvider;
+//    }
 
-    // manula users for login
+    // manual users for login
 //    @Bean
 //    public UserDetailsService userDetailsService() {
 //        UserDetails user1= User.withDefaultPasswordEncoder()

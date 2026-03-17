@@ -17,7 +17,7 @@ public class UserController {
     public String addUser(@RequestBody Users user) {
         return userService.addUser(user);
     }
-    @GetMapping("/getUsers")
+    @GetMapping("/getAllUsers")
     public List<Users> getUsers() {
         return userService.getUsers();
     }
