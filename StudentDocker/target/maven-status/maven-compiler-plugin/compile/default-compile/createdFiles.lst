@@ -1,0 +1,5 @@
+com\rishi\StudentDocker\StudentDockerApplication.class
+com\rishi\StudentDocker\controller\StudentController.class
+com\rishi\StudentDocker\service\StudentService.class
+com\rishi\StudentDocker\model\Student.class
+com\rishi\StudentDocker\repository\StudentRepo.class
