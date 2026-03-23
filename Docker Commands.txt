@@ -1,0 +1,244 @@
+Basic Docker Commands
+🔹 1. Check Docker Version
+docker --version
+
+👉 Shows installed Docker version
+
+🔹 2. Pull an Image
+docker pull nginx
+
+👉 Downloads an image from Docker Hub
+
+🔹 3. List Images
+docker images
+
+👉 Shows all downloaded images
+
+🔹 4. Run a Container
+docker run nginx
+
+👉 Runs a container from an image
+
+Run in background:
+docker run -d nginx
+Run with port mapping:
+docker run -d -p 8080:80 nginx
+
+👉 Access via: http://localhost:8080
+
+🔹 5. List Running Containers
+docker ps
+Show all (including stopped):
+docker ps -a
+🔹 6. Stop a Container
+docker stop <container_id>
+🔹 7. Start a Container
+docker start <container_id>
+🔹 8. Remove a Container
+docker rm <container_id>
+🔹 9. Remove an Image
+docker rmi <image_id>
+🔹 10. Build a Docker Image
+docker build -t myapp .
+
+👉 Builds image from Dockerfile
+
+🔹 11. View Logs
+docker logs <container_id>
+🔹 12. Execute Command Inside Container
+docker exec -it <container_id> bash
+🔹 13. Push Image to Docker Hub
+docker push username/myapp
+🔹 14. Login to Docker Hub
+docker login
+🔹 15. Remove All Stopped Containers
+docker container prune
+🔥 Most Important Commands (Quick List)
+
+If you remember only these for interviews:
+
+docker pull
+docker run
+docker ps
+docker stop
+docker build
+docker images
+docker logs
+docker exec
+🧠 Simple Flow (Real Usage)
+Pull image
+Run container
+Check running containers
+Stop/remove when done
+
+If you want next:
+✅ Dockerfile for Java (JAR) project
+✅ Docker interview questions
+✅ Mini project using Docker + Spring Boot
+
+Just tell me 👍
+
+start vs run 
+
+Here’s a clear and interview-friendly difference between docker run and docker start 👇
+
+🐳 docker run vs docker start
+🔹 1. docker run
+
+👉 Creates + Starts a new container
+
+docker run nginx
+✅ What it does:
+Pulls image (if not present)
+Creates a new container
+Starts the container
+
+📌 Every time you run this → new container is created
+
+🔹 2. docker start
+
+👉 Starts an existing (stopped) container
+
+docker start <container_id>
+✅ What it does:
+Starts a container that already exists
+Does NOT create a new one
+🔥 Key Difference
+Feature	docker run	docker start
+Creates container	✅ Yes	❌ No
+Starts container	✅ Yes	✅ Yes
+Works on new image	✅ Yes	❌ No
+Works on stopped container	❌ No	✅ Yes
+🧠 Simple Example
+Step 1: Run container
+docker run -d nginx
+
+➡️ Creates + starts container
+
+Step 2: Stop it
+docker stop <container_id>
+Step 3: Start again
+docker start <container_id>
+
+➡️ Reuses same container (no new one)
+
+🎯 Easy Analogy
+docker run → Install + Open app
+docker start → Open already installed app
+✅ Interview Answer (Short)
+
+👉 “docker run creates and starts a new container from an image, while docker start is used to restart an existing stopped container.”
+
+
+docker exec vigilant_shockley ls   - execute all container list 
+
+docker exec vigilant_shockley ls -a  - execute all container list with readme file like that
+
+PS D:\Learn Spring and Spring Boot\DockerDemo> docker ps        
+
+CONTAINER ID   IMAGE                      COMMAND    CREATED        STATUS       PORTS     NAMES
+
+cd3fba6a5466   openjdk:27-ea-jdk-oracle   "jshell"   24 hours ago   Up 9 hours             vigilant_shockley
+
+PS D:\Learn Spring and Spring Boot\DockerDemo> docker cp target/rest-demo.jar vigilant_shockley:/temp 
+
+Successfully copied 19.8MB to vigilant_shockley:/temp
+
+PS D:\Learn Spring and Spring Boot\DockerDemo> 
+
+docker cp target/rest-demo.jar vigilant_shockley:/tmp 
+
+docker commit vigilant_shockley rishi/rest-demo:v1   - create image for this jar file
+
+PS D:\Learn Spring and Spring Boot\DockerDemo>  docker ps
+CONTAINER ID   IMAGE                      COMMAND    CREATED        STATUS        PORTS     NAMES
+cd3fba6a5466   openjdk:27-ea-jdk-oracle   "jshell"   24 hours ago   Up 10 hours             vigilant_shockley
+PS D:\Learn Spring and Spring Boot\DockerDemo>  docker ps -a
+CONTAINER ID   IMAGE                      COMMAND    CREATED          STATUS                      PORTS     NAMES
+07b632572afa   rishi/rest-demo:v1         "jshell"   23 seconds ago   Exited (0) 20 seconds ago             elated_heyrovsky
+cd3fba6a5466   openjdk:27-ea-jdk-oracle   "jshell"   24 hours ago     Up 10 hours                           vigilant_shockley
+fb651ea95a2f   openjdk:27-ea-jdk-oracle   "jshell"   24 hours ago     Exited (0) 24 hours ago               focused_wright
+dc974980516f   openjdk:27-ea-jdk-oracle   "jshell"   24 hours ago     Created                               dreamy_nobel
+2c8acba09d74   85404b3c5395               "/hello"   28 hours ago     Exited (0) 28 hours ago               naughty_leavitt
+PS D:\Learn Spring and Spring Boot\DockerDemo> 
+
+docker commit --change 'CMD ["java","-jar","/tmp/rest-demo.jar"]' vigilant_shockley rishi/rest-demo:v2   -  create image to run jar
+
+docker run -p 8080:8080 rishi/rest-demo:v3 java -jar /tmp/rest-demo.jar  - run the file
+
+
+docker file:
+
+FROM eclipse-temurin:17-jdk
+
+COPY target/rest-demo.jar rest-demo.jar
+
+ENTRYPOINT ["java","-jar","rest-demo.jar"]
+
+
+create image:
+
+docker build -t rishi/rest-demo:v4 .
+
+run container:
+
+docker run -p 8080:8080 rishi/rest-demo:v4
+
+
+docker compose: - running multiple containers using yml configuration (docker-compose.yml)
+
+
+docker-compose up --build
+
+
+services:
+  app:
+    build: .
+    container_name: student-app
+    ports:
+      - "8090:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - my-network
+
+  mysql:
+    image: mysql:8
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: rishi
+      MYSQL_PASSWORD: 1234
+      MYSQL_DATABASE: student
+    ports:
+      - "3307:3306"
+    networks:
+      - my-network
+    volumes:
+      - mysql-my-data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+networks:
+  my-network:
+    driver: bridge
+
+volumes:
+  mysql-my-data:
+
+
+
+
+
+
+
+
+
+
+
+
+
