@@ -19,6 +19,16 @@ GitHub is a cloud-based platform that hosts Git repositories.
 👉 In simple terms:
 It is a place to store your code online and collaborate with others.
 
+
+git login
+
+git config --global user.name "kalirishik"
+
+git config --global user.email "kalirishik@gmail.com"
+
+
+
+
 🔑 Key Features of GitHub
 Remote repository hosting
 Collaboration (pull requests, code reviews)
@@ -62,6 +72,11 @@ If you want, I can next explain:
 🔥 Git commands for interviews
 ⚔️ Git vs GitLab vs Bitbucket
 🛠️ Real project workflow using Git & GitHub
+
+
+git remote add origin https://github.com/kalirishik/Learn-React.git/
+
+
 
 Just tell me 👍
 
@@ -142,3 +157,329 @@ git push origin feature-login
 🧾 One-Line Interview Answer
 
 👉 A branch in GitHub is an independent line of development used to work on features or fixes without affecting the main code.
+
+the output.
+
+🔹 1. Basic command (most common)
+git log
+
+This shows:
+
+Commit hash
+Author
+Date
+Commit message
+🔹 2. One-line summary (clean & short)
+git log --oneline
+
+👉 Output example:
+
+a1b2c3d Added login feature
+d4e5f6g Fixed bug in API
+🔹 3. Show commits with graph (very useful)
+git log --oneline --graph --all
+
+👉 Displays branch structure like:
+
+* a1b2c3d (HEAD -> main) Latest commit
+| * d4e5f6g Feature branch commit
+|/
+* 123abcd Initial commit
+🔹 4. Show commits with changed files
+git log --stat
+🔹 5. Show detailed changes (diff)
+git log -p
+🔹 6. View commits of a specific branch
+git log branch_name
+
+Example:
+
+git log Projects
+🔹 7. Limit number of commits
+git log -n 5
+
+👉 Shows last 5 commits
+
+🔹 8. Pretty format (custom view)
+git log --pretty=format:"%h - %an, %ar : %s"
+🔥 Pro Tip (Best for daily use)
+
+Use this:
+
+git log --oneline --graph --decorate --all
+
+It shows:
+
+Branch names
+Commit history
+Graph structure
+
+
+Switching to a committed version in Git can mean a few different things depending on what you want. Here are the correct ways 👇
+
+🔹 1. Temporarily view an old commit (Detached HEAD)
+
+If you just want to see or test an old version:
+
+git checkout <commit_id>
+
+or (modern way):
+
+git switch --detach <commit_id>
+
+👉 Example:
+
+git checkout a1b2c3d
+
+⚠️ You are in detached HEAD state
+→ Changes here are not saved to any branch unless you create one.
+
+🔹 2. Create a new branch from that commit (Safe way)
+
+If you want to work from that old version:
+
+git checkout -b new-branch <commit_id>
+
+or:
+
+git switch -c new-branch <commit_id>
+
+👉 Example:
+
+git switch -c old-version a1b2c3d
+🔹 3. Go back to previous commit (move branch pointer)
+
+If you want to reset your current branch to an old commit:
+
+👉 Soft reset (keeps changes)
+git reset --soft <commit_id>
+👉 Mixed reset (default, keeps files but unstaged)
+git reset <commit_id>
+👉 Hard reset (⚠️ deletes changes permanently)
+git reset --hard <commit_id>
+🔹 4. Go back one commit (quick way)
+git reset --hard HEAD~1
+
+👉 HEAD~1 = one commit before
+👉 HEAD~2 = two commits before
+
+🔹 5. Restore specific file from old commit
+git checkout <commit_id> -- file_name
+🔥 When to use what?
+Just view old code → checkout / switch --detach
+Start new work from old commit → switch -c
+Completely revert branch → reset
+Undo last commit → reset HEAD~1
+
+
+🔹 Option 1: Pull everything (recommended 👍)
+git pull origin Projects
+
+👉 Then just use your folder:
+
+React/todo_list/
+
+✔ Simple
+✔ No issues
+✔ Best for your case
+
+🔹 Option 2: Restore only todo_list from Git (what you want)
+
+If your repo already has latest code on GitHub:
+
+git checkout origin/Projects -- todo_list
+
+👉 This will:
+
+Download ONLY todo_list folder
+Update it in your local project
+🔹 Option 3: Use sparse checkout (advanced 🚀)
+
+If you want only one folder locally:
+
+git sparse-checkout init --cone
+git sparse-checkout set todo_list
+git pull origin Projects
+
+👉 Now only todo_list exists locally
+
+🧠 Best approach for YOU
+
+Since you're learning React:
+
+👉 Don’t overcomplicate
+
+✔ Just do:
+
+git pull origin Projects
+
+Then work inside:
+
+todo_list/
+⚠️ Important
+
+If your todo_list is missing or overwritten:
+
+👉 Use:
+
+git checkout origin/Projects -- todo_list
+🚀 Pro Tip (very useful)
+
+To see what changed in only that folder:
+
+git status todo_list
+
+If you want next level:
+I can show you
+✅ How to make each React project a separate repo (best for portfolio)
+✅ OR keep multiple projects clean in one repo without confusion
+
+
+how to revert particular commited code
+
+Good question — this is an important Git skill 👍
+There are multiple ways to revert a specific commit, depending on what exactly you want.
+
+🧠 First: Understand the options
+✔ 1. Safely undo a commit (BEST for most cases)
+
+👉 Keeps history clean and safe
+
+git revert <commit-id>
+✔ 2. Go back to a previous state (dangerous ⚠️)
+
+👉 Removes commits completely
+
+git reset --hard <commit-id>
+✅ RECOMMENDED METHOD (use this)
+🔹 Step 1: Get commit ID
+git log --oneline
+
+Example:
+
+a1b2c3d second version
+x9y8z7 first version
+🔹 Step 2: Revert that commit
+git revert a1b2c3d
+
+👉 This will:
+
+Undo changes from that commit
+Create a new commit
+Keep history safe
+🔹 Step 3: Push
+git push origin Projects
+🔥 Example (your case)
+
+If your commit was:
+
+227a46e second version
+
+Run:
+
+git revert 227a46e
+git push origin Projects
+⚠️ When to use reset
+
+Use only if:
+
+You haven’t pushed yet OR
+You don’t care about history
+git reset --hard 227a46e
+🧠 Simple comparison
+Command	Safe	Keeps history	Use case
+git revert	✅	✅	Best for GitHub
+git reset --hard	❌	❌	Local undo only
+🚀 Revert only a specific folder (advanced)
+
+If you want only todo_list:
+
+git checkout <commit-id> -- todo_list
+git commit -m "reverted todo_list"
+git push origin Projects
+👍 Recommendation for you
+
+👉 Always use:
+
+git revert <commit-id>
+
+If you want, I can:
+✅ Help you revert only todo_list changes
+✅ Show visual way in VS Code (very easy)
+✅ Clean your repo history for interview-ready GitHub
+
+i have 5 commits, currently in 5th commited data, if i revert 3rd commited data then what happened 4th and 5th commits
+
+Good question — and this is where many people get confused. Let’s make it crystal clear.
+
+🧠 Your situation
+
+You have commits like:
+
+1st → 2nd → 3rd → 4th → 5th (current)
+
+Now you run:
+
+git revert <3rd-commit-id>
+✅ What actually happens
+
+👉 Git will:
+
+❌ NOT delete 3rd commit
+❌ NOT touch 4th and 5th commits
+✅ Create a NEW commit (6th) that undoes only the changes introduced in 3rd
+🔥 Final commit history becomes:
+1 → 2 → 3 → 4 → 5 → 6 (revert of 3rd)
+🧠 Important understanding
+✔ 4th and 5th commits stay EXACTLY as they are
+
+BUT...
+
+👉 If 4th or 5th depends on changes from 3rd:
+
+You may get conflicts
+Or code may behave differently
+🔍 Example (simple)
+3rd commit:
+let count = 10;
+4th commit:
+count = count + 5;
+After revert of 3rd:
+// count = 10;  ❌ removed
+count = count + 5; // ⚠️ now may break
+⚠️ Possible outcomes
+Case 1: No dependency
+
+✔ Everything works fine
+
+Case 2: Dependency exists
+
+❗ You may get:
+
+Merge conflicts (during revert)
+Logical errors in code
+✅ If conflict happens
+
+Git will stop and ask you to fix:
+
+git add .
+git commit -m "resolved revert conflict"
+🚀 Alternative (if you want different behavior)
+👉 If you want to remove 3rd, 4th, 5th completely:
+git reset --hard <2nd-commit-id>
+👉 If you want to edit history:
+git rebase -i
+🧠 Simple summary
+Action	Effect on 4th & 5th
+git revert 3rd	✅ stays
+git reset	❌ removed
+git rebase	✏️ modified
+👍 Best for you (learning + GitHub)
+
+👉 Always use:
+
+git revert <commit-id>
+
+If you want, I can:
+✅ Show you visually in VS Code (super easy)
+✅ Help you revert only todo_list safely without breaking your app
