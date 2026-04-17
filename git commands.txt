@@ -483,3 +483,208 @@ git revert <commit-id>
 If you want, I can:
 ✅ Show you visually in VS Code (super easy)
 ✅ Help you revert only todo_list safely without breaking your app
+
+
+
+PS C:\Users\Admin\OneDrive\Desktop\git-practice>
+
+
+
+
+
+
+
+
+
+PS C:\Users\Admin\OneDrive\Desktop\git-practice>
+
+
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git remote add origin https://github.com/kalirishik/sample-git.git
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git remote add origin https://github.com/kalirishik/sample-git.git
+error: remote origin already exists.
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git barnch
+git: 'barnch' is not a git command. See 'git --help'.
+
+The most similar command is
+        branch
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git branch
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git branch projects   
+fatal: not a valid object name: 'master'
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git branch -M Projects
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git branch
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git add git-1
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git status
+On branch Projects
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git commit -m "1st version"
+[Projects (root-commit) 8940708] 1st version
+ 1 file changed, 1 insertion(+)
+ create mode 100644 git-1/file1.txt
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git branch
+* Projects
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git push
+fatal: The current branch Projects has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin Projects
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git push origin Projects
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 254 bytes | 254.00 KiB/s, done.
+Total 4 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/kalirishik/sample-git.git
+ * [new branch]      Projects -> Projects
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git add git-1
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git status
+On branch Projects
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   git-1/file1.txt
+
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git commit "2nd version"
+error: pathspec '2nd version' did not match any file(s) known to git
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git commit -m "2nd version"
+[Projects 6c03f4b] 2nd version
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git push origin Projects
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Writing objects: 100% (4/4), 289 bytes | 289.00 KiB/s, done.
+Total 4 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/kalirishik/sample-git.git
+   8940708..6c03f4b  Projects -> Projects
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git status      
+On branch Projects
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   git-1/file1.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git add git-1
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git commit -m "3rd version"
+[Projects 4ad971f] 3rd version
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git push origin Projects
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Writing objects: 100% (4/4), 290 bytes | 290.00 KiB/s, done.
+Total 4 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/kalirishik/sample-git.git
+   6c03f4b..4ad971f  Projects -> Projects
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git log
+commit 4ad971f6f9864d29c6c4563326d4d796f857ee7d (HEAD -> Projects, origin/Projects)
+Author: kalirishik <kalirishik@gmail.com>
+Date:   Fri Apr 17 14:17:23 2026 +0530
+
+commit 6c03f4bcc689589f8ace496c7db3e0d24295cdc9
+Author: kalirishik <kalirishik@gmail.com>
+Date:   Fri Apr 17 14:16:06 2026 +0530
+
+    2nd version
+
+commit 8940708ff9ce05669629163ee0db5343059b7801
+Author: kalirishik <kalirishik@gmail.com>
+Date:   Fri Apr 17 14:14:24 2026 +0530
+
+    1st version
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git revert 8940708ff9ce05669629163ee0db5343059b7801
+CONFLICT (modify/delete): git-1/file1.txt deleted in (empty tree) and modified in HEAD.  Version HEAD of git-1/file1.txt left in tree.
+error: could not revert 8940708... 1st version
+hint: After resolving the conflicts, mark them with
+hint: "git add/rm <pathspec>", then run
+hint: "git revert --continue".
+hint: You can instead skip this commit with "git revert --skip".
+hint: To abort and get back to the state before "git revert",
+hint: run "git revert --abort".
+hint: Disable this message with "git config set advice.mergeConflict false"
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git remove -v
+git: 'remove' is not a git command. See 'git --help'.
+
+The most similar command is
+        remote
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git remove   
+git: 'remove' is not a git command. See 'git --help'.
+
+The most similar command is
+        remote
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git remote 
+origin
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git remote -v
+origin  https://github.com/kalirishik/sample-git.git (fetch)
+origin  https://github.com/kalirishik/sample-git.git (push)
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git log --oneline
+4ad971f (HEAD -> Projects, origin/Projects) 3rd version
+6c03f4b 2nd version
+8940708 1st version
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git reset 8940708
+Unstaged changes after reset:
+M       git-1/file1.txt
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git status
+On branch Projects
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   git-1/file1.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git add git-1
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git commit -m '4th version'
+[Projects e107b7b] 4th version
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git reset --hard 8940708
+HEAD is now at 8940708 1st version
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git checkout 8940708 -- file
+error: pathspec 'file' did not match any file(s) known to git
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git checkout 8940708        
+Note: switching to '8940708'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 8940708 1st version
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git reset --hard 8940708
+HEAD is now at 8940708 1st version
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git log --oneline
+8940708 (HEAD, Projects) 1st version
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git log
+commit 8940708ff9ce05669629163ee0db5343059b7801 (HEAD, Projects)
+Author: kalirishik <kalirishik@gmail.com>
+Date:   Fri Apr 17 14:14:24 2026 +0530
+
+    1st version
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git reset --hard 4ad971f6f9864d29c6c4563326d4d796f857ee7d
+HEAD is now at 4ad971f 3rd version
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git reset --hard 8940708
+HEAD is now at 8940708 1st version
+
+PS C:\Users\Admin\OneDrive\Desktop\git-practice> git reflog
+8940708 (HEAD, Projects) HEAD@{0}: reset: moving to 8940708
+4ad971f (origin/Projects) HEAD@{1}: reset: moving to 4ad971f6f9864d29c6c4563326d4d796f857ee7d
+8940708 (HEAD, Projects) HEAD@{2}: checkout: moving from Projects to 8940708
+8940708 (HEAD, Projects) HEAD@{3}: reset: moving to 8940708
+e107b7b HEAD@{4}: commit: 4th version
+8940708 (HEAD, Projects) HEAD@{5}: reset: moving to 8940708
+4ad971f (origin/Projects) HEAD@{6}: commit: 3rd version
+6c03f4b HEAD@{7}: commit: 2nd version
+8940708 (HEAD, Projects) HEAD@{8}: commit (initial): 1st ve
